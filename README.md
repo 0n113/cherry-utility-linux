@@ -60,7 +60,12 @@ Needs PySide6 (Fedora: `python3-pyside6`).
 ```sh
 python3 -m cherryctl.gui          # the connected mouse
 python3 -m cherryctl.gui --demo   # a simulated mouse, nothing is sent
+python3 -m cherryctl.gui --demo-device "MX board 3 0S"   # a simulated keyboard
 ```
+
+Without a Stream Ultimate Mouse, the window opens for the first other
+supported device it finds (lighting, on-board profile, polling rate, battery;
+experimental like the commands above).
 
 The mouse reports only which DPI slot and haptics preset are selected. DPI
 values and preset parameters cannot be read from it, so the window shows the

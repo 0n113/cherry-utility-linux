@@ -2,6 +2,10 @@
 
     python3 -m cherryctl.gui          # the connected mouse
     python3 -m cherryctl.gui --demo   # a simulated mouse
+    python3 -m cherryctl.gui --demo-device "MX board 3 0S"   # a simulated keyboard
+
+Without a Stream Ultimate Mouse, the first other supported device found gets
+an experimental window (gui_evision).
 """
 import copy
 import sys
@@ -307,9 +311,35 @@ class Window(QMainWindow):
         super().closeEvent(event)
 
 
+def other_device(arguments):
+    """An Evision device to show instead of the mouse, or None."""
+    from . import evision, table
+
+    if "--demo-device" in arguments:
+        name = arguments[arguments.index("--demo-device") + 1]
+        info = next((d for d in table.load() if d["name"] == name), None)
+        if not info:
+            sys.exit(f"unknown device {name!r}; names are in cherryctl/data/devices.json")
+        return evision.Device(info, fake.FakeLink(info["checksum"]))
+    if "--demo" in arguments or device.find():
+        return None
+    for path, info in device.scan(table.load()):
+        try:
+            return evision.Device(info, device.Link(path))
+        except OSError:
+            continue
+    return None
+
+
 def main():
     app = QApplication(sys.argv)
-    window = Window(demo="--demo" in app.arguments())
+    dev = other_device(app.arguments())
+    if dev:
+        from . import gui_evision
+
+        window = gui_evision.Window(dev)
+    else:
+        window = Window(demo="--demo" in app.arguments())
     window.show()
     sys.exit(app.exec())
 
