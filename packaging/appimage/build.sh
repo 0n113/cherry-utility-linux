@@ -20,7 +20,11 @@ rm -rf "$work" && mkdir -p "$work" "$repo/dist"
 cd "$work"
 
 # The Python AppImage's file name contains its patch version; ask the API.
-python_url="$(fetch "https://api.github.com/repos/niess/python-appimage/releases/tags/$python_tag" |
+# Unauthenticated API requests are rate limited per address, which shared CI
+# runners exceed, so use GITHUB_TOKEN when it is set.
+auth=()
+[[ -z "${GITHUB_TOKEN:-}" ]] || auth=(-H "Authorization: Bearer $GITHUB_TOKEN")
+python_url="$(fetch "${auth[@]}" "https://api.github.com/repos/niess/python-appimage/releases/tags/$python_tag" |
 	grep -o "https://[^\"]*-$python_abi\.AppImage" | head -n 1)"
 [[ -n "$python_url" ]] || { echo "no Python AppImage found for $python_abi" >&2; exit 1; }
 fetch -o python.AppImage "$python_url"

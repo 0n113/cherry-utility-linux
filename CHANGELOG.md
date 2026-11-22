@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Same as 0.1.1, whose release build failed; no AppImage exists for 0.1.1.
+
 ## 0.1.1
 
 - Fix the DPI table of the Stream Ultimate Mouse: each slot takes two bytes.
