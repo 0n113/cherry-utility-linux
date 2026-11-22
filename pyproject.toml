@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cherryctl"
+description = "Configure CHERRY keyboards and mice on Linux"
+readme = "README.md"
+requires-python = ">=3.8"
+dynamic = ["version"]
+
+[project.optional-dependencies]
+gui = ["PySide6-Essentials>=6.5"]
+
+[project.scripts]
+cherryctl = "cherryctl.__main__:main"
+
+[tool.setuptools]
+packages = ["cherryctl"]
+
+[tool.setuptools.package-data]
+cherryctl = ["data/devices.json"]
+
+[tool.setuptools.dynamic]
+version = {attr = "cherryctl.__version__"}

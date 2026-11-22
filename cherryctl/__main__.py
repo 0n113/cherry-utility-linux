@@ -5,10 +5,13 @@
     python3 -m cherryctl dpi-slot 2
     python3 -m cherryctl hscroll on
     python3 -m cherryctl haptics-preset 1
-    python3 -m cherryctl haptics-set 0 --mode round --distance 17 --force 40 \\
+    python3 -m cherryctl haptics-set 1 --mode round --distance 17 --force 40 \\
         --length 14 --speed-compensation -3 --threshold 6
 
-With --dry-run the packets are printed instead of sent.
+    python3 -m cherryctl gui
+
+With --dry-run the Stream Ultimate Mouse commands print their packets instead
+of sending them.
 
 Other CHERRY keyboards and mice (experimental, untested on hardware):
 
@@ -23,7 +26,7 @@ Other CHERRY keyboards and mice (experimental, untested on hardware):
 import argparse
 import sys
 
-from . import device, evision, protocol, table
+from . import __version__, device, evision, protocol, table
 
 
 class DryRun:
@@ -115,7 +118,16 @@ def parse_colour(text):
         raise argparse.ArgumentTypeError("colour must be RRGGBB") from None
 
 
+def cmd_gui(args):
+    from . import gui
+
+    gui.main(demo=args.demo, demo_device=args.demo_device)
+
+
 def cmd_lighting(args):
+    changes = (args.brightness, args.speed) != (None, None) or args.random
+    if changes and not args.effect:
+        raise ValueError("give --effect together with the other lighting settings")
     dev = open_evision(args)
     try:
         if args.on is not None:
@@ -172,8 +184,9 @@ def cmd_battery(args):
 
 def main():
     ap = argparse.ArgumentParser(prog="cherryctl", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dry-run", action="store_true", help="print packets instead of sending them")
-    ap.add_argument("--device", help="hidraw path (default: find the mouse)")
+    ap.add_argument("--version", action="version", version=f"cherryctl {__version__}")
+    ap.add_argument("--dry-run", action="store_true", help="print the mouse packets instead of sending them")
+    ap.add_argument("--device", help="hidraw path (default: find the device)")
     sub = ap.add_subparsers(dest="command", required=True)
 
     sub.add_parser("status", help="show the selected DPI slot and haptics preset").set_defaults(func=cmd_status)
@@ -205,6 +218,11 @@ def main():
     p.add_argument("--threshold", type=int, default=6, help="free-wheeling threshold, 1-10")
     p.set_defaults(func=cmd_haptics_set)
 
+    p = sub.add_parser("gui", help="open the settings window")
+    p.add_argument("--demo", action="store_true", help="use a simulated mouse")
+    p.add_argument("--demo-device", metavar="NAME", help="use a simulated device from the device table")
+    p.set_defaults(run=cmd_gui)
+
     sub.add_parser("devices", help="list connected supported devices").set_defaults(run=cmd_devices)
 
     p = sub.add_parser("lighting", help="show or set keyboard lighting (experimental)")
@@ -231,6 +249,8 @@ def main():
 
     args = ap.parse_args()
     if hasattr(args, "run"):
+        if args.dry_run:
+            sys.exit("--dry-run only works with the Stream Ultimate Mouse commands")
         try:
             args.run(args)
         except (ValueError, protocol.ProtocolError) as err:

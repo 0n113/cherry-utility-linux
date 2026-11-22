@@ -93,8 +93,10 @@ class Device:
 
     def _transfer(self, request):
         session_command = request[3] in (self.commands["stx"], self.commands["etx"])
+        # Like the vendor software, do not check the reply's checksum: whether
+        # these devices send one is unknown.
         return self.link.transfer(
-            request, size=self.info["buffer_size"], verify_checksum=self.info["checksum"],
+            request, size=self.info["buffer_size"], verify_checksum=False,
             match_offset_high=not session_command,
         )
 

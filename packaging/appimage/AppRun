@@ -1,0 +1,9 @@
+#!/bin/sh
+# Without arguments the AppImage opens the settings window; with arguments it
+# is the cherryctl command line.
+here="$(dirname "$(readlink -f "$0")")"
+export PYTHONNOUSERSITE=1
+if [ "$#" -eq 0 ]; then
+    set -- gui
+fi
+exec "$here/opt/python3.12/bin/python3.12" -I -m cherryctl "$@"

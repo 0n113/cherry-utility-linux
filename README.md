@@ -1,90 +1,127 @@
-# cherry-utility-linux
+# cherryctl
 
-Reverse engineering notes and a Linux tool for devices supported by the
-CHERRY Utility Software (Windows, version 3.12).
+Configure CHERRY keyboards and mice on Linux. The protocol was reverse
+engineered from the CHERRY Utility Software for Windows (version 3.12); this
+project is not affiliated with CHERRY.
 
-Status: the protocol of the **Stream Ultimate Mouse** (`046a:0402`) is
-documented from static analysis, and `cherryctl` builds the same packets as
-the Windows software. On a real mouse, `status`, `dpi-slot` and
-`haptics-preset` work. **`dpi`, `hscroll` and `haptics-set` have not been
-tried on a real mouse yet.**
+## What works
 
-The Stream Ultimate Keyboard and the dongle have no settings in the vendor
-software, only firmware updates, which this project does not do.
+| Device | State |
+|---|---|
+| Stream Ultimate Mouse (`046a:0402`, USB cable) | Reading and switching the DPI slot and the haptics preset work on a real mouse (firmware 0.21). Writing DPI values, preset parameters and horizontal scrolling follows the vendor software but **has not been tried on a mouse yet**. |
+| 51 other keyboards and mice (MX Board, G80-3000, MX LP, K63W, Pixiu; MC 2.1 / MC 3.1) | **Experimental.** Lighting, on-board profiles, polling rate and battery level, built from code analysis only and never run against such a device. |
+| Stream Ultimate Keyboard and its dongle | Nothing to configure: the vendor software only offers firmware updates for them, which this project does not do. |
 
-## cherryctl
+The Stream Ultimate Mouse can only be configured through its USB cable, not
+through the dongle.
 
-Needs Python 3.8 or newer, nothing else. The mouse must be connected with its
-USB cable; it cannot be configured through the dongle.
+## Install
+
+### AppImage
+
+Download `cherryctl-*-x86_64.AppImage` from the
+[releases](https://github.com/0n113/cherry-utility-linux/releases), then:
+
+```sh
+chmod +x cherryctl-*-x86_64.AppImage
+./cherryctl-*-x86_64.AppImage              # settings window
+./cherryctl-*-x86_64.AppImage status       # command line
+```
+
+### From a checkout
+
+Needs Python 3.8 or newer; the settings window also needs PySide6.
+
+```sh
+pip install ".[gui]"      # or: pip install .   for the command line only
+cherryctl --help
+```
+
+Without installing, `python3 -m cherryctl` in the checkout does the same.
+
+### Device access
+
+Your user needs access to the device's hidraw node. Install the udev rules
+once, then replug the device:
 
 ```sh
 sudo cp udev/70-cherry.rules /etc/udev/rules.d/
-sudo udevadm control --reload && sudo udevadm trigger
+sudo udevadm control --reload
+```
 
-python3 -m cherryctl status
-python3 -m cherryctl dpi 800 1600 3200 6000     # DPI of the four slots
-python3 -m cherryctl dpi-slot 2
-python3 -m cherryctl hscroll off
-python3 -m cherryctl haptics-preset 1
-python3 -m cherryctl haptics-set 1 --mode round --distance 17 --force 40 \
+## Command line
+
+Stream Ultimate Mouse:
+
+```sh
+cherryctl status
+cherryctl dpi 800 1600 3200 6000     # DPI of the four slots
+cherryctl dpi-slot 2
+cherryctl hscroll off
+cherryctl haptics-preset 1
+cherryctl haptics-set 1 --mode round --distance 17 --force 40 \
     --length 14 --speed-compensation -3 --threshold 6
 ```
 
-`--dry-run` prints the packets instead of sending them.
+With `--dry-run` these commands print their packets instead of sending them.
 
-## Other CHERRY keyboards and mice (experimental)
-
-`cherryctl` also knows 51 other devices that use the same protocol family
-(MX Board, G80-3000, MX LP, K63W, Pixiu keyboards; MC 2.1 / MC 3.1 mice).
-**This part comes from code analysis only and has never been run against
-such a device.** See [docs/evision-devices.md](docs/evision-devices.md).
+Other devices (experimental):
 
 ```sh
-python3 -m cherryctl devices
-python3 -m cherryctl lighting                      # show state and effects
-python3 -m cherryctl lighting --effect Static --brightness 4 --colour ff8800
-python3 -m cherryctl lighting --off
-python3 -m cherryctl profile 2
-python3 -m cherryctl polling-rate 1000
-python3 -m cherryctl battery
+cherryctl devices
+cherryctl lighting                      # show state and available effects
+cherryctl lighting --effect Static --brightness 4 --colour ff8800
+cherryctl lighting --off
+cherryctl profile 2
+cherryctl polling-rate 1000
+cherryctl battery
 ```
-
-Each device needs a udev rule like the one in `udev/70-cherry.rules` with its
-own product ID. The device table `cherryctl/data/devices.json` is generated
-from the vendor's definitions by `tools/gen_devices.py`.
 
 ## Settings window
 
-Needs PySide6 (Fedora: `python3-pyside6`).
-
 ```sh
-python3 -m cherryctl.gui          # the connected mouse
-python3 -m cherryctl.gui --demo   # a simulated mouse, nothing is sent
-python3 -m cherryctl.gui --demo-device "MX board 3 0S"   # a simulated keyboard
+cherryctl gui
+cherryctl gui --demo                           # simulated mouse, nothing is sent
+cherryctl gui --demo-device "MX board 3 0S"    # simulated keyboard
 ```
-
-Without a Stream Ultimate Mouse, the window opens for the first other
-supported device it finds (lighting, on-board profile, polling rate, battery;
-experimental like the commands above).
 
 The mouse reports only which DPI slot and haptics preset are selected. DPI
 values and preset parameters cannot be read from it, so the window shows the
 values last applied from this computer (stored in
-`~/.config/cherryctl/stream-ultimate-mouse.json`) and writes all of them on
-Apply.
+`~/.config/cherryctl/stream-ultimate-mouse.json`, at first the vendor's
+defaults) and writes all of them on Apply.
 
-Tests: `python3 -m unittest`
+Without a Stream Ultimate Mouse, the window opens for the first other
+supported device it finds.
 
 ## Documentation
 
-- [docs/protocol.md](docs/protocol.md): packet format, Stream Ultimate Mouse commands, open questions.
-- [docs/evision-devices.md](docs/evision-devices.md): lighting, profiles and other settings of the other devices.
+- [docs/protocol.md](docs/protocol.md): packet format, Stream Ultimate Mouse
+  commands, open questions.
+- [docs/evision-devices.md](docs/evision-devices.md): lighting, profiles and
+  other settings of the other devices.
+- [CHANGELOG.md](CHANGELOG.md)
 
-## Analysis tools
+## Development
 
-- `tools/rcc_extract.py` extracts a Qt resource file (`.rcc`).
-- `tools/find_embedded_rcc.py` finds and extracts Qt resources compiled into
-  an executable.
+```sh
+python3 -m unittest             # tests; they need no device and no PySide6
+packaging/appimage/build.sh     # builds dist/cherryctl-VERSION-x86_64.AppImage
+```
+
+Pushing a tag `vX.Y.Z` that matches `cherryctl/__init__.py` builds the
+AppImage on GitHub and publishes it as a release.
+
+Layout:
+
+- `cherryctl/` — the tool: `protocol.py` (packets), `device.py` (hidraw),
+  `settings.py` (stored mouse settings), `evision.py` (other devices),
+  `gui.py` and `gui_evision.py` (windows), `fake.py` (simulated devices),
+  `data/devices.json` (device table).
+- `tools/` — analysis helpers: `rcc_extract.py` and `find_embedded_rcc.py`
+  extract Qt resources from `.rcc` files and executables;
+  `gen_devices.py` builds the device table and the udev rules from the
+  vendor's device definitions.
 
 The vendor installer, its extracted files, the decompiler output and firmware
 images are not part of this repository. They live in `work/`, which git

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=cherryctl
+GenericName=Keyboard and Mouse Settings
+Comment=Configure CHERRY keyboards and mice
+Exec=cherryctl gui
+Icon=cherryctl
+Categories=Settings;HardwareSettings;
+Terminal=false

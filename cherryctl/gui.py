@@ -1,8 +1,8 @@
 """Graphical settings window for the CHERRY Stream Ultimate Mouse.
 
-    python3 -m cherryctl.gui          # the connected mouse
-    python3 -m cherryctl.gui --demo   # a simulated mouse
-    python3 -m cherryctl.gui --demo-device "MX board 3 0S"   # a simulated keyboard
+    cherryctl gui          # the connected mouse
+    cherryctl gui --demo   # a simulated mouse
+    cherryctl gui --demo-device "MX board 3 0S"   # a simulated keyboard
 
 Without a Stream Ultimate Mouse, the first other supported device found gets
 an experimental window (gui_evision).
@@ -117,6 +117,7 @@ class Slider(QWidget):
 
 class Window(QMainWindow):
     apply_requested = Signal(dict)
+    poll_requested = Signal()
 
     def __init__(self, demo=False):
         super().__init__()
@@ -148,9 +149,10 @@ class Window(QMainWindow):
         self.apply_requested.connect(self.worker.apply)
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.worker.poll)
+        self.poll_requested.connect(self.worker.poll)
         self.thread.start()
         self.timer.start(POLL_MS)
-        QTimer.singleShot(0, self.worker.poll)
+        self.poll_requested.emit()
 
     # Layout
 
@@ -167,6 +169,7 @@ class Window(QMainWindow):
             spin.setSingleStep(protocol.DPI_STEP)
             spin.setSuffix(" DPI")
             spin.valueChanged.connect(self._edited)
+            spin.editingFinished.connect(lambda s=spin: s.setValue(s.value() - s.value() % protocol.DPI_STEP))
             self.dpi_spins.append(spin)
             form.addRow(radio, spin)
         self.slot_group.idClicked.connect(self._edited)
@@ -311,17 +314,16 @@ class Window(QMainWindow):
         super().closeEvent(event)
 
 
-def other_device(arguments):
+def other_device(demo, demo_device):
     """An Evision device to show instead of the mouse, or None."""
     from . import evision, table
 
-    if "--demo-device" in arguments:
-        name = arguments[arguments.index("--demo-device") + 1]
-        info = next((d for d in table.load() if d["name"] == name), None)
+    if demo_device:
+        info = next((d for d in table.load() if d["name"] == demo_device), None)
         if not info:
-            sys.exit(f"unknown device {name!r}; names are in cherryctl/data/devices.json")
+            sys.exit(f"unknown device {demo_device!r}; names are in cherryctl/data/devices.json")
         return evision.Device(info, fake.FakeLink(info["checksum"]))
-    if "--demo" in arguments or device.find():
+    if demo or device.find():
         return None
     for path, info in device.scan(table.load()):
         try:
@@ -331,18 +333,16 @@ def other_device(arguments):
     return None
 
 
-def main():
-    app = QApplication(sys.argv)
-    dev = other_device(app.arguments())
+def main(demo=False, demo_device=None):
+    app = QApplication(sys.argv[:1])
+    app.setApplicationName("cherryctl")
+    app.setDesktopFileName("cherryctl")
+    dev = other_device(demo, demo_device)
     if dev:
         from . import gui_evision
 
         window = gui_evision.Window(dev)
     else:
-        window = Window(demo="--demo" in app.arguments())
+        window = Window(demo=demo)
     window.show()
     sys.exit(app.exec())
-
-
-if __name__ == "__main__":
-    main()
