@@ -6,8 +6,10 @@ definitions in its Qt resources. Function addresses below refer to that
 binary.
 
 Confirmed on a Stream Ultimate Mouse (firmware 0.21) on 2026-11-22: the
-report layout, reads with command `0x05`, and the reply format. **Writes have
-not been tried yet**; they are what the Windows software builds.
+report layout, reads with command `0x05`, writes with command `0x06` to the
+DPI slot and the haptics preset, and the reply format. **Writing DPI values
+(`0x7F`), haptics presets (`0x7D`) and the scroll setting has not been tried
+yet**; those packets are what the Windows software builds.
 
 ## Devices of the Stream Desktop Ultimate set
 
@@ -50,6 +52,12 @@ does fill them in the same way as a request, checksum included:
 
     request  04 1c 00 05 01 16 00 00
     reply    04 1f 00 05 01 16 00 00 03
+
+The reply to a write repeats the request including its payload.
+
+On Linux the mouse has a single HID interface, so the same hidraw node also
+delivers mouse movement (report ID 1) and consumer keys (report ID 3) while
+waiting for a reply. Only reports with ID 4 belong to this protocol.
 
 This is the framing of the Evision protocol used by other CHERRY keyboards.
 The "Cherry" command set differs only in some command numbers
@@ -124,7 +132,6 @@ is the switch into the bootloader is an inference.
 
 ## Open questions
 
-- How does the firmware answer writes?
 - Can DPI values and haptics presets be read from the mouse at all?
 - Where does the software get the mouse's firmware version from?
 - What do the unsolicited reports on this interface contain (the software

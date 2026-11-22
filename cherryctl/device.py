@@ -44,8 +44,9 @@ class Mouse:
             if not select.select([self.fd], [], [], left)[0]:
                 break
             reply = os.read(self.fd, protocol.BUFFER_SIZE)
-            # The interface also carries unsolicited events; skip those.
-            if len(reply) >= protocol.HEADER_SIZE and reply[3] == request[3]:
+            # The same hidraw node delivers mouse movement (report 1) and
+            # other reports; only report 4 belongs to this protocol.
+            if len(reply) >= protocol.HEADER_SIZE and reply[0] == protocol.REPORT_ID and reply[3] == request[3]:
                 return protocol.parse_reply(request, reply)
         raise protocol.ProtocolError("no reply from device")
 

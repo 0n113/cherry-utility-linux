@@ -5,8 +5,9 @@ CHERRY Utility Software (Windows, version 3.12).
 
 Status: the protocol of the **Stream Ultimate Mouse** (`046a:0402`) is
 documented from static analysis, and `cherryctl` builds the same packets as
-the Windows software. Reading (`status`) works on a real mouse. **Writing
-settings has not been tried on a real mouse yet.**
+the Windows software. On a real mouse, `status`, `dpi-slot` and
+`haptics-preset` work. **`dpi`, `hscroll` and `haptics-set` have not been
+tried on a real mouse yet.**
 
 The Stream Ultimate Keyboard and the dongle have no settings in the vendor
 software, only firmware updates, which this project does not do.
