@@ -58,11 +58,15 @@ def pad(packet):
 def parse_reply(request, reply):
     """Check that reply answers request and return its payload.
 
-    Mirrors the vendor software: command, size and offset must echo the
-    request. The reply's first three bytes are not checked.
+    Command, size and offset must echo the request, as the vendor software
+    requires. The mouse also sends a checksum, which the vendor software
+    ignores and we verify.
     """
     if len(reply) < HEADER_SIZE or len(reply) < HEADER_SIZE + reply[4]:
         raise ProtocolError(f"reply too short: {reply.hex(' ')}")
+    end = HEADER_SIZE + reply[4]
+    if reply[0] != REPORT_ID or reply[1] | reply[2] << 8 != sum(reply[3:end]) & 0xFFFF:
+        raise ProtocolError(f"reply has a bad checksum: {reply[:end].hex(' ')}")
     if reply[3:8] != request[3:8]:
         raise ProtocolError(f"reply does not match request: {reply[:8].hex(' ')}")
     return bytes(reply[HEADER_SIZE : HEADER_SIZE + reply[4]])

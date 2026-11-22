@@ -5,8 +5,9 @@ Source: static analysis of `cus.exe` from CHERRY Utility Software 3.12
 definitions in its Qt resources. Function addresses below refer to that
 binary.
 
-**Nothing here has been confirmed against a device yet.** The packets are
-what the Windows software builds; how the firmware reacts is not known.
+Confirmed on a Stream Ultimate Mouse (firmware 0.21) on 2026-11-22: the
+report layout, reads with command `0x05`, and the reply format. **Writes have
+not been tried yet**; they are what the Windows software builds.
 
 ## Devices of the Stream Desktop Ultimate set
 
@@ -44,14 +45,24 @@ Built by `0x60a860`:
 
 A reply has the same header. The software accepts it when command, size and
 offset equal those of the request (`0x60a9a0`) and takes `size` bytes from
-offset 8 as data. It does not check the reply's first three bytes, so whether
-the device sends a checksum back is unknown.
+offset 8 as data. It does not check the reply's first three bytes. The mouse
+does fill them in the same way as a request, checksum included:
+
+    request  04 1c 00 05 01 16 00 00
+    reply    04 1f 00 05 01 16 00 00 03
 
 This is the framing of the Evision protocol used by other CHERRY keyboards.
 The "Cherry" command set differs only in some command numbers
 (`0x6114f0` versus `0x611760`), for example start/end of a write session
 `0x81`/`0x82` instead of `0x01`/`0x02`. The mouse features below do not use
 write sessions.
+
+## Settings table
+
+Commands `0x05` and `0x06` read and write a small table. On the mouse it is
+64 bytes long; a read beyond that returns leftovers of earlier packets.
+Observed content: all zero except the three bytes described below (`0x16`,
+`0x17`, `0x26`).
 
 ## Mouse settings (`MousePerformance_Cherry`)
 
@@ -113,9 +124,7 @@ is the switch into the bootloader is an inference.
 
 ## Open questions
 
-- Does the firmware answer as the software expects? Needs a mouse on a cable.
-- Is the HID output report on usage page `0xFF1C` really report ID 4 with 63
-  data bytes? Check the report descriptor of `046a:0402`.
+- How does the firmware answer writes?
 - Can DPI values and haptics presets be read from the mouse at all?
 - Where does the software get the mouse's firmware version from?
 - What do the unsolicited reports on this interface contain (the software

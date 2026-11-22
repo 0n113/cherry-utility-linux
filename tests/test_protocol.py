@@ -22,12 +22,19 @@ class PacketTest(unittest.TestCase):
 
     def test_parse_reply(self):
         request = protocol.read_request(5, 1, 0x17)
-        reply = bytes.fromhex("04 00 00 05 01 17 00 00 03") + bytes(55)
+        reply = bytes.fromhex("04 20 00 05 01 17 00 00 03") + bytes(55)
         self.assertEqual(protocol.parse_reply(request, reply), b"\x03")
 
     def test_parse_reply_rejects_other_offset(self):
         request = protocol.read_request(5, 1, 0x17)
-        reply = bytes.fromhex("04 00 00 05 01 16 00 00 03") + bytes(55)
+        reply = bytes.fromhex("04 1f 00 05 01 16 00 00 03") + bytes(55)
+        with self.assertRaises(protocol.ProtocolError):
+            protocol.parse_reply(request, reply)
+
+
+    def test_parse_reply_rejects_bad_checksum(self):
+        request = protocol.read_request(5, 1, 0x17)
+        reply = bytes.fromhex("04 21 00 05 01 17 00 00 03") + bytes(55)
         with self.assertRaises(protocol.ProtocolError):
             protocol.parse_reply(request, reply)
 
