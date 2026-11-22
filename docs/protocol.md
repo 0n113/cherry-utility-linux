@@ -5,11 +5,18 @@ Source: static analysis of `cus.exe` from CHERRY Utility Software 3.12
 definitions in its Qt resources. Function addresses below refer to that
 binary.
 
-Confirmed on a Stream Ultimate Mouse (firmware 0.21) on 2026-11-22: the
-report layout, reads with command `0x05`, writes with command `0x06` to the
-DPI slot and the haptics preset, and the reply format. **Writing DPI values
-(`0x7F`), haptics presets (`0x7D`) and the scroll setting has not been tried
-yet**; those packets are what the Windows software builds.
+Checked against a Stream Ultimate Mouse (firmware 0.21) on 2026-11-22:
+
+- Reads with `0x05` and writes with `0x06` to the DPI slot and the haptics
+  preset were sent by `cherryctl` and answered by the mouse.
+- The packets the vendor software sends when the mouse connects (DPI table,
+  DPI slot, horizontal scrolling, four haptics presets, preset index) were
+  captured on the USB bus. `cherryctl` produces the same 8 packets, all 64
+  bytes identical (`tests/test_vendor_capture.py`). The mouse answered each
+  with an echo.
+
+`cherryctl` itself has not yet sent `0x7F`, `0x7D` or the scroll setting to a
+mouse.
 
 ## Devices of the Stream Desktop Ultimate set
 
@@ -28,7 +35,8 @@ The mouse definition names three HID interfaces. Configuration uses
 `usb-endpoint-cherry`: usage page `0xFF1C`, usage `0x92`, 64-byte reports.
 
 The software sends each request with `hid_write` as an output report, padded
-with zeros to 64 bytes (`0x617520`). Replies are read from the same interface
+with zeros to 64 bytes (`0x617520`); on the bus that is an interrupt transfer
+to endpoint 1. Replies are read from the same interface
 with a timeout of 1500 ms per request; one request is in flight at a time.
 
 ## Packet
@@ -79,7 +87,7 @@ Observed content: all zero except the three bytes described below (`0x16`,
 | read selected DPI slot | `0x05` | `0x16` | reply: 1 byte, slot index from 0 |
 | select DPI slot | `0x06` | `0x16` | 1 byte, slot index from 0 |
 | horizontal scroll | `0x06` | `0x26` | 1 byte, 0 or 1 |
-| DPI values | `0x7F` | 0 | 8 bytes: one per slot, then 4 zero bytes |
+| DPI values | `0x7F` | 0 | 8 bytes: two per slot, the encoded value then 0 |
 
 A DPI value is encoded as `(dpi - 1) / 100` (`0x4fb1c0`): 200 is 1, 1000 is
 9, 6000 is 59. Allowed are 200 to 6000 in steps of 100.

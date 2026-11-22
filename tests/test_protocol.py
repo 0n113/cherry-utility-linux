@@ -49,7 +49,7 @@ class EncodingTest(unittest.TestCase):
                 protocol.encode_dpi(dpi)
 
     def test_dpi_table(self):
-        self.assertEqual(protocol.dpi_table([1000, 2000, 3000, 4000]).hex(" "), "09 13 1d 27 00 00 00 00")
+        self.assertEqual(protocol.dpi_table([1000, 2000, 3000, 4000]).hex(" "), "09 00 13 00 1d 00 27 00")
 
     def test_haptics_range(self):
         with self.assertRaises(ValueError):

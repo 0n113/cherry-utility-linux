@@ -1,8 +1,8 @@
-First release.
+**Do not use 0.1.0 to set DPI values:** it wrote the DPI table of the Stream Ultimate Mouse wrongly (slots 2 to 4). This release fixes that.
 
-**Tried on real hardware (CHERRY Stream Ultimate Mouse, firmware 0.21, USB cable):** reading the selected DPI slot and haptics preset, switching both.
+**CHERRY Stream Ultimate Mouse (firmware 0.21, USB cable):** the packets for all settings are bit-identical to those the vendor software sends (compared against a USB capture). Reading and switching the DPI slot and haptics preset were tried with this tool on a real mouse; writing DPI values, preset parameters and horizontal scrolling was not.
 
-**Built from code analysis, not yet tried on hardware:** writing DPI values, haptics preset parameters and horizontal scrolling on the Stream Ultimate Mouse; everything for the 51 other keyboards and mice (lighting, on-board profiles, polling rate, battery).
+**51 other keyboards and mice** (lighting, on-board profiles, polling rate, battery): built from code analysis, not yet tried on hardware.
 
 ## Use
 

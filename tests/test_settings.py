@@ -11,7 +11,7 @@ class ApplyTest(unittest.TestCase):
         s = settings.defaults()
         s["dpi_slot"], s["haptics_preset"], s["horizontal_scroll"] = 2, 3, False
         settings.apply(mouse, s)
-        self.assertEqual(mouse.dpi_table.hex(" "), "09 13 1d 27 00 00 00 00")
+        self.assertEqual(mouse.dpi_table.hex(" "), "09 00 13 00 1d 00 27 00")
         self.assertEqual(mouse.table[protocol.OFFSET_DPI_SLOT], 2)
         self.assertEqual(mouse.table[protocol.OFFSET_HAPTICS_PRESET], 3)
         self.assertEqual(mouse.table[protocol.OFFSET_HORIZONTAL_SCROLL], 0)

@@ -26,7 +26,7 @@ class DryRunTest(unittest.TestCase):
     def test_prints_mouse_packets(self):
         status, out = run("--dry-run", "dpi", "800", "1600", "3200", "6000")
         self.assertIsNone(status)
-        self.assertEqual(out.strip(), "04 f7 00 7f 08 00 00 00 07 0f 1f 3b 00 00 00 00")
+        self.assertEqual(out.strip(), "04 f7 00 7f 08 00 00 00 07 00 0f 00 1f 00 3b 00")
 
     def test_refused_for_other_devices(self):
         status, _ = run("--dry-run", "lighting", "--effect", "Static")

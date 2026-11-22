@@ -8,7 +8,7 @@ project is not affiliated with CHERRY.
 
 | Device | State |
 |---|---|
-| Stream Ultimate Mouse (`046a:0402`, USB cable) | Reading and switching the DPI slot and the haptics preset work on a real mouse (firmware 0.21). Writing DPI values, preset parameters and horizontal scrolling follows the vendor software but **has not been tried on a mouse yet**. |
+| Stream Ultimate Mouse (`046a:0402`, USB cable) | All packets are bit-identical to those of the vendor software (compared with a USB capture, firmware 0.21). Reading and switching the DPI slot and the haptics preset were tried with `cherryctl` on a real mouse; writing DPI values, preset parameters and horizontal scrolling was not yet. |
 | 51 other keyboards and mice (MX Board, G80-3000, MX LP, K63W, Pixiu; MC 2.1 / MC 3.1) | **Experimental.** Lighting, on-board profiles, polling rate and battery level, built from code analysis only and never run against such a device. |
 | Stream Ultimate Keyboard and its dongle | Nothing to configure: the vendor software only offers firmware updates for them, which this project does not do. |
 

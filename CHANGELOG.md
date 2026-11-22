@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- Fix the DPI table of the Stream Ultimate Mouse: each slot takes two bytes.
+  0.1.0 wrote slots 2 to 4 wrongly. Found by comparing with a USB capture of
+  the vendor software; all packets for the mouse now match it bit for bit.
+
 ## 0.1.0
 
 - Stream Ultimate Mouse: DPI slots, horizontal scrolling and scroll wheel

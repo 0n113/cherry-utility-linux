@@ -80,9 +80,12 @@ def encode_dpi(dpi):
 
 
 def dpi_table(dpis):
+    """The 8-byte DPI table: two bytes per slot, the value in the first."""
     if len(dpis) != DPI_SLOTS:
         raise ValueError(f"expected {DPI_SLOTS} DPI values")
-    return bytes(encode_dpi(d) for d in dpis) + bytes(8 - DPI_SLOTS)
+    table = bytearray(2 * DPI_SLOTS)
+    table[0::2] = bytes(encode_dpi(d) for d in dpis)
+    return bytes(table)
 
 
 def haptics_preset(mode, distance, force, length, speed_compensation, free_wheeling, threshold):
