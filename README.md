@@ -32,6 +32,21 @@ python3 -m cherryctl haptics-set 1 --mode round --distance 17 --force 40 \
 
 `--dry-run` prints the packets instead of sending them.
 
+## Settings window
+
+Needs PySide6 (Fedora: `python3-pyside6`).
+
+```sh
+python3 -m cherryctl.gui          # the connected mouse
+python3 -m cherryctl.gui --demo   # a simulated mouse, nothing is sent
+```
+
+The mouse reports only which DPI slot and haptics preset are selected. DPI
+values and preset parameters cannot be read from it, so the window shows the
+values last applied from this computer (stored in
+`~/.config/cherryctl/stream-ultimate-mouse.json`) and writes all of them on
+Apply.
+
 Tests: `python3 -m unittest`
 
 ## Documentation
