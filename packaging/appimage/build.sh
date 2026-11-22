@@ -51,6 +51,9 @@ install -m 644 "$repo/share/cherryctl.desktop" AppDir/cherryctl.desktop
 install -m 644 "$repo/share/cherryctl.svg" AppDir/cherryctl.svg
 ln -s cherryctl.svg AppDir/.DirIcon
 
+# Extraction leaves some directories readable by the owner only.
+chmod -R a+rX AppDir
+
 out="$repo/dist/cherryctl-$version-x86_64.AppImage"
 ARCH=x86_64 ./appimagetool --appimage-extract-and-run --no-appstream AppDir "$out"
 echo "built $out"
