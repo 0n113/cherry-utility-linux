@@ -129,8 +129,55 @@ DPI encoding by the device's `dpiFormula` (`0x56e440`):
 | Xtrfy | | `dpi/100` | same |
 | Cherry | Stream Ultimate Mouse | `(dpi-1)/100` | same |
 
+## Framing on these devices
+
+Most of these devices have neither `useChecksum` nor the Cherry command set
+in their definition. For them the software's feature writes use the builder
+without checksum (`0x60a7b0`): bytes 1-2 are 0 and byte 7 is `0x55`.
+
+    04 00 00 06 08 01 00 55 <8 bytes lighting header>
+
+Devices with `useChecksum` (MX Board 3.0S Pro family, K63W Pro) get the
+checksum and the offset's high byte in byte 7, like the Stream Ultimate Mouse.
+
+The third-party MX Board 3.0S tool sends a fixed, non-matching checksum and
+`0x55` and reports that it works, so that firmware does not seem to check
+bytes 1-2.
+
+The report is padded to the definition's `maxBufferSize`: 63 bytes on most
+keyboards, 32 on some, 64 if not given.
+
+## Device matching
+
+The software picks the definition by USB vendor and product ID and by the
+device's version number (`bcdDevice`), which must lie within the entry's
+`hwVersions` bounds (inclusive). That number is also what its UI shows as
+firmware version. The settings interface is the HID collection with usage
+page `0xFF1C`, usage `0x92`.
+
+## Battery (`DeviceBattery_Evision`)
+
+Read 3 bytes at offset 0 with command `0x1A` (Cherry set `0x9A`): byte 0 is
+the level in percent, byte 1 is non-zero while charging. The software asks
+again 3 seconds after each answer and ignores a single reading of 0.
+
+## Sleep timer (`DeviceSleepMode_Evision`)
+
+`0x06`, 2 bytes, at offset `0x22` (sleep delay, seconds) and `0x24`
+(hibernate delay, minutes); 0 switches sleep off, 4320 switches hibernate
+off. On devices with profiles the value is written into every profile block.
+The byte order of the value was not recovered with certainty, so `cherryctl`
+does not write it.
+
+## Events (`EventsMonitor_Evision`)
+
+At start the software sends Stx and Etx once (unless the definition says
+`initializeProtocol: false`). Keyboards report key events as 3-byte or
+9-byte input reports; the software reloads settings or the profile index on
+the Fn key events in them.
+
 ## Not analysed yet
 
-Device matching and transports for these devices, battery, sleep timer, key
-mapping and macros, pairing, displays, SOCD, Mod-Tap, the Xtrfy protocol
-(M50 mouse), firmware updates.
+Key mapping and macros, pairing, displays, SOCD, Mod-Tap, the Xtrfy protocol
+(M50 mouse), firmware updates. Six device entries that only offer the
+`usb-endpoint-cherry-sync` transport are not in `cherryctl`'s table.

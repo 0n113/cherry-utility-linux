@@ -55,21 +55,22 @@ def pad(packet):
     return packet + bytes(BUFFER_SIZE - len(packet))
 
 
-def parse_reply(request, reply):
+def parse_reply(request, reply, verify_checksum=True, match_offset_high=True):
     """Check that reply answers request and return its payload.
 
     Command, size and offset must echo the request, as the vendor software
-    requires. The mouse also sends a checksum, which the vendor software
+    requires (it skips the offset's high byte for session commands). The
+    Stream Ultimate Mouse also sends a checksum, which the vendor software
     ignores and we verify.
     """
     if len(reply) < HEADER_SIZE or len(reply) < HEADER_SIZE + reply[4]:
         raise ProtocolError(f"reply too short: {reply.hex(' ')}")
     end = HEADER_SIZE + reply[4]
-    if reply[0] != REPORT_ID or reply[1] | reply[2] << 8 != sum(reply[3:end]) & 0xFFFF:
+    if verify_checksum and (reply[0] != REPORT_ID or reply[1] | reply[2] << 8 != sum(reply[3:end]) & 0xFFFF):
         raise ProtocolError(f"reply has a bad checksum: {reply[:end].hex(' ')}")
-    if reply[3:8] != request[3:8]:
+    if reply[3:7] != request[3:7] or (match_offset_high and reply[7] != request[7]):
         raise ProtocolError(f"reply does not match request: {reply[:8].hex(' ')}")
-    return bytes(reply[HEADER_SIZE : HEADER_SIZE + reply[4]])
+    return bytes(reply[HEADER_SIZE:end])
 
 
 def encode_dpi(dpi):

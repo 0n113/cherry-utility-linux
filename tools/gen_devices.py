@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+"""Build cherryctl/data/devices.json from the vendor's device definitions.
+
+    gen_devices.py VENDOR_DEVICES_DIR OUT.json
+
+VENDOR_DEVICES_DIR is devices-info-collection/devices as extracted from
+cus.exe by find_embedded_rcc.py. Only what cherryctl implements is kept.
+"""
+import glob
+import json
+import os
+import sys
+
+
+def hexint(text):
+    return int(text, 16)
+
+
+def memory_transport(entry):
+    """The transport carrying the settings protocol, or None."""
+    transports = entry.get("transports") or ([entry["transport"]] if entry.get("transport") else [])
+    for t in transports:
+        types = t.get("types") or [t.get("type")]
+        if "usb-endpoint-cherry" in types:
+            return t["data"]
+    return None
+
+
+def lighting(config):
+    out = {
+        "table": config.get("mappingTable", "Regular"),
+        "effects": config.get("modes", []),
+        "brightness": [config.get("minBrightness", 0), config.get("maxBrightness", 4)],
+        "delay": [config.get("minDelay", 0), config.get("maxDelay", 4)],
+    }
+    if config.get("hasLightingsEnabled", True):
+        out["off_flag_offset"] = hexint(config.get("lightingsEnabledOffset", "0x15"))
+    return out
+
+
+def convert(code_name, entry):
+    data = memory_transport(entry)
+    if entry.get("isInoperable") or entry["id"]["type"] != "usb" or data is None:
+        return None
+    protocol = entry.get("protocol", {})
+    device = {
+        "name": code_name.replace("_", " "),
+        "vid": hexint(entry["id"]["data"]["vid"]),
+        "pid": hexint(entry["id"]["data"]["pid"]),
+        "usage_page": hexint(data["usagePage"]),
+        "usage": hexint(data["usage"]),
+        "buffer_size": data.get("maxBufferSize", 64),
+        "command_set": protocol.get("commandsSet", "Evision"),
+        "checksum": protocol.get("useChecksum", False),
+        "features": {},
+    }
+    versions = entry.get("hwVersions", {})
+    if "low" in versions:
+        device["version_min"] = hexint(versions["low"])
+    if "high" in versions:
+        device["version_max"] = hexint(versions["high"])
+
+    features = device["features"]
+    for feature in entry.get("features", []):
+        name = feature if isinstance(feature, str) else feature["name"]
+        config = {} if isinstance(feature, str) else feature.get("config", {})
+        if name == "DeviceInfo":
+            device["type"] = config.get("deviceType", "")
+        elif name == "Lightings_Evision":
+            features["lighting"] = lighting(config)
+        elif name == "HwProfiles_Evision":
+            features["profiles"] = {
+                "count": config.get("profilesCount", 1),
+                "colours_stride": hexint(config.get("customLightingsOffset", "0")),
+            }
+        elif name == "KeyboardPerformance_Evision":
+            features["keyboard_performance"] = {
+                "rates_wired": config.get("pollingRatesWired", []),
+                "rates_dongle": config.get("pollingRatesDongle", []),
+                "locks": config.get("availableLocks", []),
+            }
+        elif name == "MousePerformance_Evision":
+            features["mouse_performance"] = {
+                "formula": config["dpiFormula"],
+                "slots": config["dpiSlotCount"],
+                "dpi": [config["dpiMin"], config["dpiMax"], config["dpiStep"]],
+                "rates": config.get("pollingRates", []),
+            }
+        elif name == "DeviceBattery_Evision":
+            features["battery"] = {}
+    return device if features else None
+
+
+def main():
+    if len(sys.argv) != 3:
+        sys.exit(__doc__)
+    src, dst = sys.argv[1:]
+    devices = []
+    for path in sorted(glob.glob(os.path.join(src, "*", "devices.json"))):
+        code_name = os.path.basename(os.path.dirname(path))
+        with open(path, encoding="utf-8-sig") as f:
+            for entry in json.load(f):
+                device = convert(code_name, entry)
+                if device:
+                    devices.append(device)
+    with open(dst, "w") as f:
+        json.dump(devices, f, indent=1)
+        f.write("\n")
+    print(f"{len(devices)} device entries written to {dst}")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,2378 @@
+[
+ {
+  "name": "G80-3000N EU",
+  "vid": 1130,
+  "pid": 222,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "G80-3000N TKL EU",
+  "vid": 1130,
+  "pid": 221,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "G80-3000N TKL US",
+  "vid": 1130,
+  "pid": 224,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "G80-3000N US",
+  "vid": 1130,
+  "pid": 225,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "G80-3000S",
+  "vid": 1130,
+  "pid": 233,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 259,
+  "type": "Keyboard"
+ },
+ {
+  "name": "G80-3000S TKL",
+  "vid": 1130,
+  "pid": 197,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 262,
+  "type": "Keyboard"
+ },
+ {
+  "name": "K63W Pro Dongle",
+  "vid": 1130,
+  "pid": 324,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 32,
+  "command_set": "Cherry",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 370,
+  "type": "Keyboard"
+ },
+ {
+  "name": "K63W Pro Wireless",
+  "vid": 1130,
+  "pid": 322,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Cherry",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 386,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MC 2 1 Mouse",
+  "vid": 1130,
+  "pid": 420,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Reduced",
+    "effects": [
+     "Breathing",
+     "Spectrum",
+     "Static"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ]
+   },
+   "mouse_performance": {
+    "formula": "Evision_V2",
+    "slots": 4,
+    "dpi": [
+     200,
+     5000,
+     100
+    ],
+    "rates": [
+     125,
+     250,
+     500,
+     1000
+    ]
+   }
+  },
+  "version_min": 260,
+  "type": "Mouse"
+ },
+ {
+  "name": "MC 3 1 Mouse",
+  "vid": 1130,
+  "pid": 419,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Reduced",
+    "effects": [
+     "Breathing",
+     "Spectrum",
+     "Static"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ]
+   },
+   "mouse_performance": {
+    "formula": "Evision_V1",
+    "slots": 4,
+    "dpi": [
+     50,
+     5000,
+     50
+    ],
+    "rates": [
+     125,
+     250,
+     500,
+     1000
+    ]
+   }
+  },
+  "type": "Mouse"
+ },
+ {
+  "name": "MC 3 1 Mouse NEW",
+  "vid": 1130,
+  "pid": 421,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Reduced",
+    "effects": [
+     "Breathing",
+     "Spectrum",
+     "Static"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ]
+   },
+   "mouse_performance": {
+    "formula": "Evision_V2",
+    "slots": 4,
+    "dpi": [
+     200,
+     8000,
+     100
+    ],
+    "rates": [
+     125,
+     250,
+     500,
+     1000
+    ]
+   }
+  },
+  "version_min": 259,
+  "type": "Mouse"
+ },
+ {
+  "name": "MV board 3 0 RGB",
+  "vid": 1130,
+  "pid": 199,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 261,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX LP 2 1 Compact Dongle",
+  "vid": 1130,
+  "pid": 439,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 256,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX LP 2 1 Compact Wireless",
+  "vid": 1130,
+  "pid": 434,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 259,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX LP 6 1 Compact Dongle",
+  "vid": 1130,
+  "pid": 436,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 256,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX LP 6 1 Compact Wireless",
+  "vid": 1130,
+  "pid": 433,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 259,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 10 0",
+  "vid": 1130,
+  "pid": 187,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 265,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 10 0 N EU",
+  "vid": 1130,
+  "pid": 223,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 260,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 10 0 N US",
+  "vid": 1130,
+  "pid": 226,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 257,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 10 1 Dongle",
+  "vid": 1130,
+  "pid": 497,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 32,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "RegularCherry",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Rainbow",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 384
+   },
+   "battery": {},
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 259,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 10 1 Wireless",
+  "vid": 1130,
+  "pid": 495,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "RegularCherry",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Rainbow",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 384
+   },
+   "battery": {},
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 276,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 1 0 TKL RGB",
+  "vid": 1130,
+  "pid": 172,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 264,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 1 1 TKL",
+  "vid": 1130,
+  "pid": 444,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 2 0S EU",
+  "vid": 1130,
+  "pid": 422,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 257,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 2 0S NBL Dongle",
+  "vid": 1130,
+  "pid": 428,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {}
+  },
+  "version_min": 259,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 2 0S NBL Pro Dongle",
+  "vid": 1130,
+  "pid": 480,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 32,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {}
+  },
+  "version_min": 262,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 2 0S NBL Pro Wireless",
+  "vid": 1130,
+  "pid": 478,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {}
+  },
+  "version_min": 278,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 2 0S NBL Wireless",
+  "vid": 1130,
+  "pid": 427,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {}
+  },
+  "version_min": 272,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 2 0S US",
+  "vid": 1130,
+  "pid": 196,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 260,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S",
+  "vid": 1130,
+  "pid": 121,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 310,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Dongle",
+  "vid": 1130,
+  "pid": 234,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 292,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Dongle Charizard",
+  "vid": 1130,
+  "pid": 501,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave",
+     "Flame"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 256,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Dongle Pikachu",
+  "vid": 1130,
+  "pid": 463,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave",
+     "Lightning"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 256,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S KR",
+  "vid": 1130,
+  "pid": 131,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 260,
+  "version_max": 260,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Pro",
+  "vid": 1130,
+  "pid": 777,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Cherry",
+  "checksum": true,
+  "features": {
+   "lighting": {
+    "table": "ExtendedCherry",
+    "effects": [
+     "FlowingLight",
+     "WaterRipple",
+     "StarDots",
+     "Flow",
+     "Shadow",
+     "Layers",
+     "SineWave",
+     "ColorSpring",
+     "SilentSnow",
+     "Neon",
+     "Radiant",
+     "Loop",
+     "ColorGrid",
+     "Snowfall",
+     "Meteor",
+     "Static",
+     "Breathing",
+     "Spectrum",
+     "Custom"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [],
+    "locks": []
+   }
+  },
+  "version_min": 2071,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Pro Dongle",
+  "vid": 1130,
+  "pid": 773,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Cherry",
+  "checksum": true,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "ExtendedCherry",
+    "effects": [
+     "FlowingLight",
+     "WaterRipple",
+     "StarDots",
+     "Flow",
+     "Shadow",
+     "Layers",
+     "SineWave",
+     "ColorSpring",
+     "SilentSnow",
+     "Neon",
+     "Radiant",
+     "Loop",
+     "ColorGrid",
+     "Snowfall",
+     "Meteor",
+     "Static",
+     "Breathing",
+     "Spectrum",
+     "Custom"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 2056,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Pro NBL",
+  "vid": 1130,
+  "pid": 775,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Cherry",
+  "checksum": true,
+  "features": {
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [],
+    "locks": [
+     "Win",
+     "AltF4",
+     "AltTab",
+     "AltEsc",
+     "CtrlEsc"
+    ]
+   }
+  },
+  "version_min": 2064,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Pro Wireless",
+  "vid": 1130,
+  "pid": 771,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Cherry",
+  "checksum": true,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "ExtendedCherry",
+    "effects": [
+     "FlowingLight",
+     "WaterRipple",
+     "StarDots",
+     "Flow",
+     "Shadow",
+     "Layers",
+     "SineWave",
+     "ColorSpring",
+     "SilentSnow",
+     "Neon",
+     "Radiant",
+     "Loop",
+     "ColorGrid",
+     "Snowfall",
+     "Meteor",
+     "Static",
+     "Breathing",
+     "Spectrum",
+     "Custom"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [],
+    "locks": []
+   }
+  },
+  "version_min": 2071,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S TKL",
+  "vid": 1130,
+  "pid": 432,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Wireless",
+  "vid": 1130,
+  "pid": 227,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 312,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Wireless Charizard",
+  "vid": 1130,
+  "pid": 499,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave",
+     "Flame"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 256,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 0S Wireless Pikachu",
+  "vid": 1130,
+  "pid": 462,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave",
+     "Lightning"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 260,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 3 1",
+  "vid": 1130,
+  "pid": 471,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 263,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 8 2 TKL Dongle",
+  "vid": 1130,
+  "pid": 236,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 264,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 8 2 TKL Wireless",
+  "vid": 1130,
+  "pid": 229,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 274,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 8 2 XAGA TKL Dongle",
+  "vid": 1130,
+  "pid": 451,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid",
+     "XAGA"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 258,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 8 2 XAGA TKL Wireless",
+  "vid": 1130,
+  "pid": 450,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 63,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "battery": {},
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Fire",
+     "Radar",
+     "Radiation",
+     "Rain",
+     "RedHotMetal",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SineWave",
+     "SingleKey",
+     "Spectrum",
+     "Stars",
+     "Static",
+     "Vortex",
+     "Wave",
+     "WaveMid",
+     "XAGA"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   }
+  },
+  "version_min": 261,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 8 3 TKL Dongle",
+  "vid": 1130,
+  "pid": 475,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 32,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "RegularCherry",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Rainbow",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 384
+   },
+   "battery": {},
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 262,
+  "type": "Keyboard"
+ },
+ {
+  "name": "MX board 8 3 TKL Wireless",
+  "vid": 1130,
+  "pid": 474,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "RegularCherry",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Rainbow",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 384
+   },
+   "battery": {},
+   "keyboard_performance": {
+    "rates_wired": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000,
+     8000
+    ],
+    "rates_dongle": [
+     125,
+     250,
+     500,
+     1000,
+     2000,
+     4000
+    ],
+    "locks": []
+   }
+  },
+  "version_min": 291,
+  "type": "Keyboard"
+ },
+ {
+  "name": "Pixiu 75 Dongle",
+  "vid": 1130,
+  "pid": 484,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 32,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "battery": {}
+  },
+  "version_min": 256,
+  "type": "Keyboard"
+ },
+ {
+  "name": "Pixiu 75 Wireless",
+  "vid": 1130,
+  "pid": 482,
+  "usage_page": 65308,
+  "usage": 146,
+  "buffer_size": 64,
+  "command_set": "Evision",
+  "checksum": false,
+  "features": {
+   "lighting": {
+    "table": "Regular",
+    "effects": [
+     "Breathing",
+     "Curve",
+     "Custom",
+     "Radiation",
+     "Ripples",
+     "Rolling",
+     "Scan",
+     "SingleKey",
+     "Spectrum",
+     "Static",
+     "Wave"
+    ],
+    "brightness": [
+     0,
+     4
+    ],
+    "delay": [
+     0,
+     4
+    ],
+    "off_flag_offset": 21
+   },
+   "profiles": {
+    "count": 3,
+    "colours_stride": 512
+   },
+   "battery": {}
+  },
+  "version_min": 278,
+  "type": "Keyboard"
+ }
+]

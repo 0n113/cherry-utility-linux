@@ -9,11 +9,21 @@
         --length 14 --speed-compensation -3 --threshold 6
 
 With --dry-run the packets are printed instead of sent.
+
+Other CHERRY keyboards and mice (experimental, untested on hardware):
+
+    python3 -m cherryctl devices
+    python3 -m cherryctl lighting
+    python3 -m cherryctl lighting --effect Static --brightness 4 --colour ff8800
+    python3 -m cherryctl lighting --off
+    python3 -m cherryctl profile 2
+    python3 -m cherryctl polling-rate 1000
+    python3 -m cherryctl battery
 """
 import argparse
 import sys
 
-from . import device, protocol
+from . import device, evision, protocol, table
 
 
 class DryRun:
@@ -71,6 +81,95 @@ def cmd_haptics_set(mouse, args):
     mouse.write(protocol.CMD_HAPTICS_PRESET_WRITE, record, args.preset * protocol.HAPTICS_PRESET_SIZE)
 
 
+def open_evision(args):
+    found = list(device.scan(table.load()))
+    if args.device:
+        found = [(path, info) for path, info in found if path == args.device]
+    if not found:
+        sys.exit("no supported keyboard or mouse found")
+    if len(found) > 1:
+        names = ", ".join(f"{info['name']} ({path})" for path, info in found)
+        sys.exit(f"several devices found, choose one with --device: {names}")
+    path, info = found[0]
+    try:
+        return evision.Device(info, device.Link(path))
+    except PermissionError:
+        sys.exit(f"no permission for {path}; see README for the udev rule")
+
+
+def cmd_devices(args):
+    path = device.find()
+    if path:
+        print(f"{path}  Stream Ultimate Mouse")
+    for path, info in device.scan(table.load()):
+        print(f"{path}  {info['name']}  ({', '.join(sorted(info['features'])).replace('_', ' ')})")
+
+
+def parse_colour(text):
+    text = text.lstrip("#")
+    if len(text) != 6:
+        raise argparse.ArgumentTypeError("colour must be RRGGBB")
+    try:
+        return tuple(bytes.fromhex(text))
+    except ValueError:
+        raise argparse.ArgumentTypeError("colour must be RRGGBB") from None
+
+
+def cmd_lighting(args):
+    dev = open_evision(args)
+    try:
+        if args.on is not None:
+            dev.set_lighting_on(args.on)
+        if args.effect:
+            config = dev.need("lighting")
+            dev.set_lighting(
+                effect=args.effect,
+                brightness=config["brightness"][1] if args.brightness is None else args.brightness,
+                delay=config["delay"][0] if args.speed is None else config["delay"][1] - args.speed,
+                direction=args.direction, random=args.random, colour=args.colour,
+            )
+        elif args.on is None:
+            state = dev.lighting()
+            config = dev.need("lighting")
+            print(f"effects: {', '.join(sorted(config['effects']))}")
+            print(f"effect: {state['effect']}")
+            print(f"brightness: {state['brightness']} (of {config['brightness'][1]})")
+            print(f"speed: {config['delay'][1] - state['delay']} (of {config['delay'][1]})")
+            if "on" in state:
+                print(f"lighting: {'on' if state['on'] else 'off'}")
+    finally:
+        dev.close()
+
+
+def cmd_profile(args):
+    dev = open_evision(args)
+    try:
+        if args.profile is None:
+            dev.need("profiles")
+            print(f"profile: {dev.profile() + 1}")
+        else:
+            dev.set_profile(args.profile - 1)
+    finally:
+        dev.close()
+
+
+def cmd_polling_rate(args):
+    dev = open_evision(args)
+    try:
+        dev.set_polling_rate(args.rate, dongle=args.dongle)
+    finally:
+        dev.close()
+
+
+def cmd_battery(args):
+    dev = open_evision(args)
+    try:
+        level, charging = dev.battery()
+        print(f"battery: {level} %{', charging' if charging else ''}")
+    finally:
+        dev.close()
+
+
 def main():
     ap = argparse.ArgumentParser(prog="cherryctl", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dry-run", action="store_true", help="print packets instead of sending them")
@@ -106,7 +205,37 @@ def main():
     p.add_argument("--threshold", type=int, default=6, help="free-wheeling threshold, 1-10")
     p.set_defaults(func=cmd_haptics_set)
 
+    sub.add_parser("devices", help="list connected supported devices").set_defaults(run=cmd_devices)
+
+    p = sub.add_parser("lighting", help="show or set keyboard lighting (experimental)")
+    p.add_argument("--effect")
+    p.add_argument("--brightness", type=int)
+    p.add_argument("--speed", type=int)
+    p.add_argument("--direction", default="right", choices=sorted(evision.DIRECTIONS))
+    p.add_argument("--random", action="store_true", help="random colours")
+    p.add_argument("--colour", "--color", type=parse_colour, default=(255, 255, 255), metavar="RRGGBB")
+    p.add_argument("--on", dest="on", action="store_true", default=None)
+    p.add_argument("--off", dest="on", action="store_false")
+    p.set_defaults(run=cmd_lighting)
+
+    p = sub.add_parser("profile", help="show or switch the on-board profile (experimental)")
+    p.add_argument("profile", type=int, nargs="?")
+    p.set_defaults(run=cmd_profile)
+
+    p = sub.add_parser("polling-rate", help="set a keyboard's polling rate in Hz (experimental)")
+    p.add_argument("rate", type=int)
+    p.add_argument("--dongle", action="store_true", help="the rate used through the dongle")
+    p.set_defaults(run=cmd_polling_rate)
+
+    sub.add_parser("battery", help="show the battery level (experimental)").set_defaults(run=cmd_battery)
+
     args = ap.parse_args()
+    if hasattr(args, "run"):
+        try:
+            args.run(args)
+        except (ValueError, protocol.ProtocolError) as err:
+            sys.exit(f"error: {err}")
+        return
     if args.dry_run:
         mouse = DryRun()
     else:

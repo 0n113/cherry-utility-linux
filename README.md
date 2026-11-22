@@ -32,6 +32,27 @@ python3 -m cherryctl haptics-set 1 --mode round --distance 17 --force 40 \
 
 `--dry-run` prints the packets instead of sending them.
 
+## Other CHERRY keyboards and mice (experimental)
+
+`cherryctl` also knows 51 other devices that use the same protocol family
+(MX Board, G80-3000, MX LP, K63W, Pixiu keyboards; MC 2.1 / MC 3.1 mice).
+**This part comes from code analysis only and has never been run against
+such a device.** See [docs/evision-devices.md](docs/evision-devices.md).
+
+```sh
+python3 -m cherryctl devices
+python3 -m cherryctl lighting                      # show state and effects
+python3 -m cherryctl lighting --effect Static --brightness 4 --colour ff8800
+python3 -m cherryctl lighting --off
+python3 -m cherryctl profile 2
+python3 -m cherryctl polling-rate 1000
+python3 -m cherryctl battery
+```
+
+Each device needs a udev rule like the one in `udev/70-cherry.rules` with its
+own product ID. The device table `cherryctl/data/devices.json` is generated
+from the vendor's definitions by `tools/gen_devices.py`.
+
 ## Settings window
 
 Needs PySide6 (Fedora: `python3-pyside6`).
@@ -51,7 +72,8 @@ Tests: `python3 -m unittest`
 
 ## Documentation
 
-- [docs/protocol.md](docs/protocol.md): packet format, commands, open questions.
+- [docs/protocol.md](docs/protocol.md): packet format, Stream Ultimate Mouse commands, open questions.
+- [docs/evision-devices.md](docs/evision-devices.md): lighting, profiles and other settings of the other devices.
 
 ## Analysis tools
 
