@@ -26,6 +26,7 @@ class Worker(QObject):
     """Talks to the mouse off the GUI thread."""
 
     connected = Signal(dict)  # selection read from the mouse
+    selection_changed = Signal(dict)  # the mouse switched slot or preset itself
     disconnected = Signal(str)  # reason shown to the user, may be empty
     applied = Signal()
     failed = Signal(str)
@@ -34,6 +35,7 @@ class Worker(QObject):
         super().__init__()
         self.demo = demo
         self.mouse = None
+        self.selection = {}
 
     def _open(self):
         if self.demo:
@@ -56,6 +58,17 @@ class Worker(QObject):
         if self.mouse:
             if not self.demo and not device.find():
                 self._drop()
+                return
+            # The mouse's own buttons switch DPI slot and haptics preset.
+            try:
+                selection = {}
+                settings.read_selection(self.mouse, selection)
+            except (OSError, protocol.ProtocolError) as err:
+                self._drop(str(err))
+                return
+            if selection != self.selection:
+                self.selection = selection
+                self.selection_changed.emit(selection)
             return
         try:
             self.mouse = self._open()
@@ -63,6 +76,7 @@ class Worker(QObject):
                 return
             selection = {}
             settings.read_selection(self.mouse, selection)
+            self.selection = selection
             self.connected.emit(selection)
         except PermissionError:
             self.mouse = None
@@ -78,6 +92,7 @@ class Worker(QObject):
         try:
             settings.apply(self.mouse, values)
             settings.save(values)
+            self.selection = {key: values[key] for key in ("dpi_slot", "haptics_preset")}
             self.applied.emit()
         except ValueError as err:
             self.failed.emit(str(err))
@@ -143,6 +158,7 @@ class Window(QMainWindow):
         self.worker = Worker(demo)
         self.worker.moveToThread(self.thread)
         self.worker.connected.connect(self.on_connected)
+        self.worker.selection_changed.connect(self.on_selection_changed)
         self.worker.disconnected.connect(lambda reason: self.set_connected(False, reason))
         self.worker.applied.connect(self.on_applied)
         self.worker.failed.connect(self.on_failed)
@@ -298,6 +314,10 @@ class Window(QMainWindow):
             "Mouse connected. DPI values and haptics presets cannot be read from the mouse; "
             "the values shown are the ones last applied from this computer."
         )
+
+    def on_selection_changed(self, selection):
+        self.values.update(selection)
+        self._show_values()
 
     def on_applied(self):
         self.apply_button.setEnabled(True)

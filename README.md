@@ -8,7 +8,7 @@ project is not affiliated with CHERRY.
 
 | Device | State |
 |---|---|
-| Stream Ultimate Mouse (`046a:0402`, USB cable) | All packets are bit-identical to those of the vendor software (compared with a USB capture, firmware 0.21). Reading and switching the DPI slot and the haptics preset were tried with `cherryctl` on a real mouse; writing DPI values, preset parameters and horizontal scrolling was not yet. |
+| Stream Ultimate Mouse (`046a:0402`, USB cable) | Works. All settings were written to a real mouse (firmware 0.21) and acknowledged by it, and the packets are bit-identical to those of the vendor software (compared with a USB capture). |
 | 51 other keyboards and mice (MX Board, G80-3000, MX LP, K63W, Pixiu; MC 2.1 / MC 3.1) | **Experimental.** Lighting, on-board profiles, polling rate and battery level, built from code analysis only and never run against such a device. |
 | Stream Ultimate Keyboard and its dongle | Nothing to configure: the vendor software only offers firmware updates for them, which this project does not do. |
 
@@ -48,6 +48,11 @@ once, then replug the device:
 sudo cp udev/70-cherry.rules /etc/udev/rules.d/
 sudo udevadm control --reload
 ```
+
+The rules give the user logged in at the machine access to all HID
+interfaces of the listed devices, as the rules of similar tools do. For a
+keyboard that includes the interface carrying its key presses, so any program
+running as that user can read them from the hidraw node.
 
 ## Command line
 
@@ -101,6 +106,7 @@ supported device it finds.
 - [docs/evision-devices.md](docs/evision-devices.md): lighting, profiles and
   other settings of the other devices.
 - [CHANGELOG.md](CHANGELOG.md)
+- [CONTRIBUTING.md](CONTRIBUTING.md): how to report results from a device.
 
 ## Development
 
@@ -126,3 +132,8 @@ Layout:
 The vendor installer, its extracted files, the decompiler output and firmware
 images are not part of this repository. They live in `work/`, which git
 ignores.
+
+## Licence
+
+[MIT](LICENSE). CHERRY is a trademark of its owner; this project is
+independent and neither endorsed nor supported by CHERRY.

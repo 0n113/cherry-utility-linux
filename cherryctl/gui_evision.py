@@ -177,6 +177,9 @@ class Window(QMainWindow):
         try:
             level, charging = self.dev.battery()
         except (ValueError, OSError, protocol.ProtocolError):
+            # Each failed read blocks the window for the reply timeout, so
+            # do not keep asking a device that does not answer.
+            self.timer.stop()
             self.battery.setText("Battery: unknown")
             return
         self.battery.setText(f"Battery: {level} %{', charging' if charging else ''}")

@@ -14,9 +14,8 @@ Checked against a Stream Ultimate Mouse (firmware 0.21) on 2026-11-22:
   captured on the USB bus. `cherryctl` produces the same 8 packets, all 64
   bytes identical (`tests/test_vendor_capture.py`). The mouse answered each
   with an echo.
-
-`cherryctl` itself has not yet sent `0x7F`, `0x7D` or the scroll setting to a
-mouse.
+- `cherryctl` then wrote the same settings itself; the mouse acknowledged all
+  8 packets.
 
 ## Devices of the Stream Desktop Ultimate set
 
@@ -91,6 +90,9 @@ Observed content: all zero except the three bytes described below (`0x16`,
 
 A DPI value is encoded as `(dpi - 1) / 100` (`0x4fb1c0`): 200 is 1, 1000 is
 9, 6000 is 59. Allowed are 200 to 6000 in steps of 100.
+
+The bytes at `0x16` and `0x17` were seen to change without a write from the
+computer, presumably through the buttons on the mouse.
 
 The software never reads DPI values or the scroll setting from the mouse. It
 keeps them in its own profile (defaults 1000/2000/3000/4000, slot 1,

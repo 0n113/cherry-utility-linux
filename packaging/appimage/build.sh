@@ -4,14 +4,20 @@
 #   packaging/appimage/build.sh
 #
 # Needs curl and network access. Downloads a relocatable Python
-# (github.com/niess/python-appimage) and appimagetool, installs cherryctl with
-# PySide6 into it and packs the result. Nothing is installed on the host.
+# (github.com/niess/python-appimage) and appimagetool, checks both against
+# pinned checksums, installs cherryctl with PySide6 into the Python and packs
+# the result. Nothing is installed on the host.
 set -euo pipefail
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 work="${WORK_DIR:-$repo/build/appimage}"
-python_tag="python3.12"
-python_abi="cp312-cp312-manylinux_2_28_x86_64"
+
+# Build inputs, pinned by checksum. To update one, change its URL and replace
+# the checksum with the output of sha256sum for the new file.
+python_url="https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.15-cp312-cp312-manylinux_2_28_x86_64.AppImage"
+python_sha256="929ce69b45955bfc74af81fd65a65c3ad240593c99b3574466a94ebf0f987ebf"
+tool_url="https://github.com/AppImage/appimagetool/releases/download/1.9.1/appimagetool-x86_64.AppImage"
+tool_sha256="ed4ce84f0d9caff66f50bcca6ff6f35aae54ce8135408b3fa33abfc3cb384eb0"
 
 fetch() { curl -fsSL --retry 8 --retry-all-errors --retry-delay 3 "$@"; }
 
@@ -19,22 +25,16 @@ version="$(sed -n 's/^__version__ = "\(.*\)"$/\1/p' "$repo/cherryctl/__init__.py
 rm -rf "$work" && mkdir -p "$work" "$repo/dist"
 cd "$work"
 
-# The Python AppImage's file name contains its patch version; ask the API.
-# Unauthenticated API requests are rate limited per address, which shared CI
-# runners exceed, so use GITHUB_TOKEN when it is set.
-auth=()
-[[ -z "${GITHUB_TOKEN:-}" ]] || auth=(-H "Authorization: Bearer $GITHUB_TOKEN")
-python_url="$(fetch "${auth[@]}" "https://api.github.com/repos/niess/python-appimage/releases/tags/$python_tag" |
-	grep -o "https://[^\"]*-$python_abi\.AppImage" | head -n 1)"
-[[ -n "$python_url" ]] || { echo "no Python AppImage found for $python_abi" >&2; exit 1; }
 fetch -o python.AppImage "$python_url"
-fetch -o appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
+fetch -o appimagetool "$tool_url"
+printf '%s  %s\n' "$python_sha256" python.AppImage "$tool_sha256" appimagetool | sha256sum --check --strict
 chmod +x python.AppImage appimagetool
 
 ./python.AppImage --appimage-extract >/dev/null
 mv squashfs-root AppDir
 python="AppDir/opt/python3.12/bin/python3.12"
-"$python" -I -m pip install --no-cache-dir --no-warn-script-location "$repo[gui]"
+"$python" -I -m pip install --no-cache-dir --no-warn-script-location \
+	--constraint "$repo/packaging/appimage/constraints.txt" "$repo[gui]"
 
 # Qt parts the two windows do not use (QML, Quick, PDF, tools, translations).
 site="AppDir/opt/python3.12/lib/python3.12/site-packages/PySide6"

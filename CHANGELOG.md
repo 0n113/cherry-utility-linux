@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.3
+
+- The settings window follows DPI slot and haptics preset changes made with
+  the mouse's own buttons instead of overwriting them on Apply.
+- All settings of the Stream Ultimate Mouse have now been written to a real
+  mouse with cherryctl.
+- The AppImage build verifies its downloads against pinned checksums.
+- MIT licence.
+
 ## 0.1.2
 
 - Same as 0.1.1, whose release build failed; no AppImage exists for 0.1.1.
