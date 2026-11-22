@@ -1,0 +1,2 @@
+# CHERRY Stream Ultimate Mouse (USB cable): let the logged-in user configure it.
+KERNEL=="hidraw*", ATTRS{idVendor}=="046a", ATTRS{idProduct}=="0402", TAG+="uaccess"
